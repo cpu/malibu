@@ -1,5 +1,7 @@
 ---
 
+throwaway_ssh_key: "/tmp/integration.test.idrsa"
+
 linode_vars: "../streisand/global_vars/noninteractive/linode-site.yml"
 local_linode_vars: "/tmp/travis-linode-site.yml"
 
