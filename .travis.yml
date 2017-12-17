@@ -15,7 +15,7 @@ install:
   # Install Ansible
   - pip install ansible
   # Install the Linode deps
-  - pip intsall linode-python
+  - pip install linode-python
   # Print Ansible version
   - ansible --version
 
