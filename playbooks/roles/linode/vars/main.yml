@@ -1,6 +1,6 @@
 ---
 
-linode_vars: "../../streisand/global_vars/noninteractive/linode-site.yml"
+linode_vars: "../streisand/global_vars/noninteractive/linode-site.yml"
 local_linode_vars: "/tmp/travis-linode-site.yml"
 
 # Note: linode_datacenter must be a number in quotes, e.g. "6" not 6.
