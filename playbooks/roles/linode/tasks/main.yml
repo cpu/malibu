@@ -1,0 +1,48 @@
+---
+
+- name: "Copy the Streisand noninteractive linode vars file locally"
+  copy:
+    src: "{{ linode_vars }}"
+    dest: "{{ local_linode_vars }}"
+
+- name: "Enable test-client mode"
+  lineinfile:
+    path: "{{ local_linode_vars }}"
+    line: "streisand_client_test: yes"
+    insertafter: EOF
+    state: present
+
+- name: "Set the Linode API key"
+  lineinfile:
+    path: "{{ local_linode_vars }}"
+    line: "linode_api_key: {{ lookup('env','LINODE_API_KEY') }}"
+    regexp: "^linode_api_key: \"\"$"
+    state: present
+
+- name: "Set the Linode datacenter"
+  lineinfile:
+    path: "{{ local_linode_vars }}"
+    line: "linode_datacenter: {{ linode_datacenter }}"
+    regexp: "^linode_datacenter: \"7\"$"
+    state: present
+
+- name: "Set the Linode server name"
+  lineinfile:
+    path: "{{ local_linode_vars }}"
+    line: "linode_server_name: streisand-e2e-test"
+    regexp: "^linode_server_name: streisand$"
+    state: present
+
+- name: "Provision the Linode server noninteractively"
+  command: "deploy/streisand-new-cloud-server.sh --provider linode --site-config {{ local_linode_vars }}"
+  args:
+    chdir: "../../../streisand"
+
+- name: "Register the gateway password"
+  command: "cat generated-docs/gateway-password.txt"
+  register: gateway-password-cmd-out
+  args:
+    chdir: "../../../streisand"
+
+- debug:
+    var: gateway-password-cmd-out.stdout
