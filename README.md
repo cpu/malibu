@@ -1,4 +1,4 @@
-![Malibu Streisand Estate](https://raw.githubusercontent.com/StreisandEffect/malibu/master/malibu.jpg "Mailbu Streisand Estate")
+![Malibu Streisand Estate](malibu.jpg "Mailbu Streisand Estate")
 
 Malibu
 =========
