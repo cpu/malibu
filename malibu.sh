@@ -15,8 +15,8 @@ pushd streisand
   # Deploy a new Streisand instance in Linode
   deploy/streisand-new-cloud-server.sh --provider linode --site-config /tmp/travis-linode-site.yml
 
-  server_ip=$(jq .ipv4 generated-docs/integration.test.metadata.json)
-  server_id=$(jq .id generated-docs/integration.test.metadata.json)
+  server_ip=$(jq .ipv4 integration-data/linode.metadata.json)
+  server_id=$(jq .id integration-data/linode.metadata.json)
 
   # Run the integration tests against the Linode instance
   ansible-playbook -e "streisand_ip=$server_ip" playbooks/test-client.yml
