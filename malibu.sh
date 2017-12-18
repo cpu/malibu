@@ -15,9 +15,12 @@ pushd streisand
   # Deploy a new Streisand instance in Linode
   deploy/streisand-new-cloud-server.sh --provider linode --site-config /tmp/travis-linode-site.yml
 
+  server_ip=$(jq .ipv4 generated-docs/integration.test.metadata.json)
+  server_id=$(jq .id generated-docs/integration.test.metadata.json)
+
   # Run the integration tests against the Linode instance
-  ansible-playbook -e "streisand_ip=$(cat generated-docs/server-ip.txt)" playbooks/test-client.yml
+  ansible-playbook -e "streisand_ip=$server_ip" playbooks/test-client.yml
 popd
 
 # Run a playbook to delete the instances created above
-ansible-playbook playbooks/cleanup.yml
+ansible-playbook -e "server_id=$server_id" playbooks/cleanup.yml
