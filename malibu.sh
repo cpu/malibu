@@ -15,6 +15,8 @@ pushd streisand
   # Deploy a new Streisand instance in Linode
   deploy/streisand-new-cloud-server.sh --provider linode --site-config /tmp/travis-linode-site.yml
 
+  ls -la
+
   server_ip=$(jq .ipv4 integration-data/linode.metadata.json)
   server_id=$(jq .id integration-data/linode.metadata.json)
 
