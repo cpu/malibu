@@ -32,7 +32,7 @@
 - name: "Set the Linode datacenter"
   lineinfile:
     path: "{{ local_linode_vars }}"
-    line: "linode_datacenter: {{ linode_datacenter }}"
+    line: "linode_datacenter: \"{{ linode_datacenter }}\""
     regexp: "^linode_datacenter: \"7\"$"
     state: present
 
