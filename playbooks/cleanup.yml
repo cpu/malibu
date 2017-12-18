@@ -1,0 +1,12 @@
+---
+
+- name: Ensure the integration test instance is destroyed
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - linode:
+        api_key: "{{ lookup('env','LINODE_API_KEY') }}"
+        name: streisand-e2e-test
+        linode_id: 12345678
+        state: absent
+      register: streisand_server
