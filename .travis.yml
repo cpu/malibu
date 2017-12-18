@@ -11,13 +11,10 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install python-pip python-dev ca-certificates shellcheck -qq
   - sudo apt-get install build-essential python-setuptools python-cffi libffi-dev libssl-dev libcurl4-openssl-dev
+  - git clone https://github.com/StreisandEffect/streisand.git
 
 install:
-  # Install Ansible
-  - pip install ansible
-  # Install the Linode deps
-  - pip install linode-python
-  # Print Ansible version
+  - pip install -r streisand/requirements.txt
   - ansible --version
 
 script:
