@@ -7,6 +7,6 @@
     - linode:
         api_key: "{{ lookup('env','LINODE_API_KEY') }}"
         name: streisand-e2e-test
-        linode_id: {{ server_id }}
+        linode_id: "{{ server_id }}"
         state: absent
       register: streisand_server

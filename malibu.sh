@@ -19,7 +19,7 @@ pushd streisand
   server_id=$(jq .id integration-data/linode.metadata.json)
 
   # Run the integration tests against the Linode instance
-  ansible-playbook -e "streisand_ip=$server_ip" playbooks/test-client.yml
+  ansible-playbook -i ../inventory -e "streisand_ip=$server_ip" playbooks/test-client.yml
 popd
 
 # Run a playbook to delete the instances created above
