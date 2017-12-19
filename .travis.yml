@@ -9,7 +9,7 @@ sudo: required
 
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install python-pip python-dev ca-certificates shellcheck jq -qq
+  - sudo apt-get install python-pip python-dev ca-certificates shellcheck jq tree -qq
   - sudo apt-get install build-essential python-setuptools python-cffi libffi-dev libssl-dev libcurl4-openssl-dev
   - git clone -b cpu-malibu-poc https://github.com/StreisandEffect/streisand.git
 
