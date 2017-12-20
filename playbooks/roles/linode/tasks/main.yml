@@ -42,3 +42,39 @@
     line: "linode_server_name: streisand-e2e-test"
     regexp: "^linode_server_name: streisand$"
     state: present
+
+- name: "Get the {{ throwaway_ssh_key }}.pub contents"
+  command: "cat {{ throaway_ssh_key }}.pub"
+  register: ssh_key
+  changed_when: False
+
+- name: "Create a client server"
+  linode:
+    api_key: "{{ lookup('env','LINODE_API_KEY') }}"
+    name: "streisand-e2e-client"
+    plan: "1"
+    datacenter: "6"
+    distribution: "146"
+    kernel_id: "210"
+    ssh_pub_key: "{{ ssh_key.stdout }}"
+    alert_cpu_threshold: "1000"
+    alert_diskio_threshold: "10"
+    alert_bwin_threshold : "10"
+    alert_bwout_threshold: "10"
+    alert_bwquota_threshold: "80"
+    wait: yes
+  register: streisand_client
+
+- name: "Wait until the server has finished booting and OpenSSH is accepting connections"
+  wait_for:
+    host: "{{ streisand_client.instance.ipv4 }}"
+    port: 22
+    search_regex: OpenSSH
+    timeout: 600
+
+- name: Rewrite the client instance IP
+  lineinfile:
+    path: "inventory"
+    line: "{{ streisand_client.instance.ipv4 }} ansible_connection=local ansible_python_interpreter=python2$"
+    regexp: "^CLIENT_INSTANCE_IP ansible_connection=local ansible_python_interpreter=python2$"
+    state: present

@@ -2,4 +2,4 @@
 localhost ansible_connection=local ansible_python_interpreter=python2
 
 [streisand-client]
-localhost ansible_connection=local ansible_python_interpreter=python2
+CLIENT_INSTANCE_IP ansible_connection=local ansible_python_interpreter=python2
