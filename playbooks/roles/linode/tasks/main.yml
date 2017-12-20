@@ -44,7 +44,7 @@
     state: present
 
 - name: "Get the {{ throwaway_ssh_key }}.pub contents"
-  command: "cat {{ throaway_ssh_key }}.pub"
+  command: "cat {{ throwaway_ssh_key }}.pub"
   register: ssh_key
   changed_when: False
 
