@@ -75,6 +75,6 @@
 - name: Rewrite the client instance IP
   lineinfile:
     path: "../inventory"
-    line: "{{ streisand_client.instance.ipv4 }} ansible_connection=local ansible_python_interpreter=python2$"
-    regexp: "^CLIENT_INSTANCE_IP ansible_connection=local ansible_python_interpreter=python2$"
+    line: "{{ streisand_client.instance.ipv4 }} ansible_connection=local"
+    regexp: "^CLIENT_INSTANCE_IP ansible_connection=local"
     state: present
