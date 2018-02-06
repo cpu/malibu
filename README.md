@@ -3,7 +3,7 @@
 Malibu
 =========
 
-This project is **not yet ready for use** - stay tuned.
+This project is **not yet ready for use** - stay tuned...
 
 Goal
 ----------------
